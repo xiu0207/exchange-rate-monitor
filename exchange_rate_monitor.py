@@ -1,3 +1,4 @@
+import os
 import json
 import requests
 from datetime import datetime
@@ -27,6 +28,11 @@ def save_exchange_rate():
         f.write('\n')
 
 def plot_exchange_rates():
+    # 如果文件不存在，先生成一个空文件
+    if not os.path.exists('exchange_rates.json'):
+    with open('exchange_rates.json', 'w') as f:
+        pass
+
     with open('exchange_rates.json', 'r') as f:
         data = [json.loads(line) for line in f]
 
@@ -42,6 +48,5 @@ def plot_exchange_rates():
     plt.savefig('exchange_rates.png')
     plt.close()
     
-
-   save_exchange_rate()
-   plot_exchange_rates() 
+save_exchange_rate()
+plot_exchange_rates()
