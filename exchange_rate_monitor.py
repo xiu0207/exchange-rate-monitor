@@ -34,10 +34,10 @@ def plot_exchange_rates():
             pass
 
     with open('exchange_rates.json', 'r') as f:
-    data = [json.loads(line) for line in f]
+        data = [json.loads(line) for line in f]
 
-    dates = [datetime.strptime(d['date'], '%Y-%m-%d %H:%M:%S') for d in data]
-    rates = [float(d['rate']) for d in data]
+        dates = [datetime.strptime(d['date'], '%Y-%m-%d %H:%M:%S') for d in data]
+        rates = [float(d['rate']) for d in data]
 
     plt.figure(figsize=(12, 6))
     plt.plot(dates, rates)
