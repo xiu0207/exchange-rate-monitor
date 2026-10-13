@@ -41,10 +41,10 @@ def plot_exchange_rates():
 
     plt.figure(figsize=(12, 6))
     plt.plot(dates, rates)
-　  # ===== 新增的两行代码 =====
+　  
 　  # 强制 X 轴只显示最近 30 天
     plt.xlim(dates[-1] - timedelta(days=30), dates[-1])
-    # ==========================
+    
     
     plt.title("USD to JPY Exchange Rate Over Time")
     plt.xlabel("Date")
