@@ -1,7 +1,7 @@
 import os
 import json
 import requests
-from datetime import datetime,timedelta
+from datetime import datetime
 import schedule
 import time
 import matplotlib.pyplot as plt
@@ -35,15 +35,12 @@ def plot_exchange_rates():
 
     with open('exchange_rates.json', 'r') as f:
         data = [json.loads(line) for line in f]
-
-        dates = [datetime.strptime(d['date'], '%Y-%m-%d %H:%M:%S') for d in data]
-        rates = [float(d['rate']) for d in data]
-
+    dates = [datetime.strptime(d['date'], '%Y-%m-%d %H:%M:%S') for d in data]
+    rates = [float(d['rate']) for d in data]
+        # 只保留最近 30 个数据点
+    dates, rates = dates[-30:], rates[-30:]
     plt.figure(figsize=(12, 6))
     plt.plot(dates, rates)
-　  
-　  # 强制 X 轴只显示最近 30 天
-    plt.xlim(dates[-1] - timedelta(days=30), dates[-1])
     
     
     plt.title("USD to JPY Exchange Rate Over Time")
