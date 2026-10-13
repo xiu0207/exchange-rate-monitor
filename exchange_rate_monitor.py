@@ -35,13 +35,11 @@ def plot_exchange_rates():
 
     with open('exchange_rates.json', 'r') as f:
         data = [json.loads(line) for line in f]
-    dates = [datetime.strptime(d['date'], '%Y-%m-%d %H:%M:%S') for d in data]
-    rates = [float(d['rate']) for d in data]
-        # 只保留最近 30 个数据点
-    dates, rates = dates[-30:], rates[-30:]
+        dates = [datetime.strptime(d['date'], '%Y-%m-%d %H:%M:%S') for d in data]
+        rates = [float(d['rate']) for d in data]
+
     plt.figure(figsize=(12, 6))
     plt.plot(dates, rates)
-    
     
     plt.title("USD to JPY Exchange Rate Over Time")
     plt.xlabel("Date")
