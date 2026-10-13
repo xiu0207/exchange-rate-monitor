@@ -1,4 +1,6 @@
 name: 汇率监控定时任务
+permissions:
+  contents: write
 
 on:
   schedule:
@@ -30,3 +32,11 @@ jobs:
           name: exchange-rate-chart
           path: exchange_rates.png
           retention-days: 30
+
+      - name: 提交数据更改
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add exchange_rates.json
+          git commit -m "自动更新汇率数据" || echo "No changes to commit"
+          git push
