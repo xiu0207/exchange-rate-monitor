@@ -44,9 +44,10 @@ def plot_exchange_rates():
 
     # ===== 新增：异常波动检测与标注逻辑 =====
     # 设定预警阈值，例如 1% (即 0.01)
-    THRESHOLD = 0.01 
+    THRESHOLD = 0.003
     
     # 确保至少有两天的数据才能计算波动
+    print(f"当前读取到的数据总条数: {len(rates)}")
     if len(rates) > 1:
         for i in range(1, len(rates)):
             prev_rate = rates[i-1]
