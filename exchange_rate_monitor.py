@@ -73,11 +73,15 @@ def plot_exchange_rates():
                              ha='center', va='bottom',
                              color=color, fontweight='bold')
     # =======================================
-
+    plt.xticks(rotation=45)
+    
     plt.title("USD to JPY Exchange Rate Over Time")
     plt.xlabel("Date")
     plt.ylabel("Exchange Rate")
-    plt.grid(True)
+    
+    plt.grid(True, linestyle='--', alpha=0.5)
+    
+    plt.tight_layout()
     plt.savefig('exchange_rates.png')
     plt.close()
 
